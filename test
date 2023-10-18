@@ -1,0 +1,11 @@
+step
+
+download aplikasi pasarnow di playstore
+buka aplikasi
+aplikasi langsung meminta update ke versi terbaru
+
+expected result 
+aplikasi pasarnow tidak meminta update ke versi terbaru
+
+actual result 
+aplikasi meminta update ke versi terbaru
