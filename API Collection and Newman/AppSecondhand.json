@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "b5219b00-fb80-40d7-8203-f544c1e6afeb",
+		"name": "App Secondhand API Gold",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30093973",
+		"_collection_link": "https://www.postman.com/mrhndi/workspace/app/collection/30093973-b5219b00-fb80-40d7-8203-f544c1e6afeb?action=share&source=collection_link&creator=30093973"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"full_name\": \"Herman Tester\",\r\n  \"email\": \"johnlax@mail.com\",\r\n  \"password\": \"asdfg123456\",\r\n  \"phone_number\": 88888956464,\r\n  \"address\": \"Mampang PrPt\",\r\n\"city\": \"Jakarta\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/register",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"johnlax@mail.com\",\r\n  \"password\": \"asdfg123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/login",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post seller product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Sepatu",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Sepatu",
+							"type": "text"
+						},
+						{
+							"key": "base_price",
+							"value": "100000",
+							"type": "text"
+						},
+						{
+							"key": "category_ids",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Jakarta",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/D:/Tiger sharks - Herman.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}seller/product",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Seller product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\npm.test(\"Response time is less than 200ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(300);\r\n});\r\n});"
+				},
+				"url": {
+					"raw": "{{base_url}}seller/product",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get seller product ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}seller/product/96778",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product",
+						"96778"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete seller product ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}seller/product/96778",
+					"host": [
+						"{{base_url}}seller"
+					],
+					"path": [
+						"product",
+						"96778"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Buyer Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}buyer/product",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Buyer Product id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}buyer/product/1",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Buyer Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product_id\": 96779,\r\n  \"bid_price\": 98000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}buyer/order",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Buyer Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://market-final-project.binaracademy.org/buyer/order",
+					"protocol": "https",
+					"host": [
+						"market-final-project",
+						"binaracademy",
+						"org"
+					],
+					"path": [
+						"buyer",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Buyer Order ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}buyer/order/46673",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"order",
+						"46673"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Buyer Order ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5sYXhAbWFpbC5jb20iLCJpYXQiOjE2OTk1NzkwMzJ9.86oAqRLRmEgXpVv5FEISRc2wUJi-m-VwpaZPcnOhz5U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}buyer/order/46673",
+					"host": [
+						"{{base_url}}buyer"
+					],
+					"path": [
+						"order",
+						"46673"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
